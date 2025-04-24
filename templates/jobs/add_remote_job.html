@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post a New Remote Job</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html, body {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #5d4b46;
+        }
+        
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            overflow: hidden;
+        }
+        
+        .form-section {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+        
+        .info-section {
+            flex: 1;
+            background-color: #7ca3a5;
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        p.subtitle {
+            margin-bottom: 30px;
+            color: #444;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .form-section h3 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        button {
+            background-color: #4e7e2a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: #3c6121;
+        }
+        
+        .info-section h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+        }
+        
+        .info-section p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .back-link a {
+            color: #4e7e2a;
+            text-decoration: none;
+        }
+        
+        .custom-file-upload {
+            border: 1px dashed #ddd;
+            display: inline-block;
+            padding: 12px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .help-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .info-section {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <h1>Post a New Remote Job</h1>
+            <p class="subtitle">Please fill in the details below to publish your job listing.</p>
+            
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="id_title">Job Title</label>
+                    {{ form.title }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_company">Company</label>
+                    {{ form.company }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_location">Location</label>
+                    {{ form.location }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_companyImage">Company Logo</label>
+                    <label class="custom-file-upload">
+                        {{ form.companyImage }}
+                        <span>Choose a file</span>
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_description">Job Description</label>
+                    {{ form.description }}
+                </div>
+                
+                <h3>Job Details</h3>
+                
+                <div class="form-group">
+                    <label for="id_job_type">Job Type</label>
+                    {{ form.job_type }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_experience">Experience Required</label>
+                    {{ form.experience }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_education">Education Required</label>
+                    {{ form.education }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_salary">Salary Range</label>
+                    {{ form.salary }}
+                </div>
+                
+                <h3>Responsibilities, Requirements, and Benefits</h3>
+                
+                <div class="form-group">
+                    <label for="id_responsibilities">Responsibilities</label>
+                    {{ form.responsibilities }}
+                    <p class="help-text">Enter each responsibility on a new line</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_requirements">Requirements</label>
+                    {{ form.requirements }}
+                    <p class="help-text">Enter each requirement on a new line</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_benefits">Benefits</label>
+                    {{ form.benefits }}
+                    <p class="help-text">Enter each benefit on a new line</p>
+                </div>
+                
+                <button type="submit">Post Job</button>
+                
+                <div class="back-link">
+                    <a href="{% url 'app2:remote_job_list' %}">Back to job listings</a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="info-section">
+            <h2>HireSync</h2>
+            <h2>Reach Top Talent Today</h2>
+            <p>
+                Post your job listing to connect with qualified candidates, 
+                showcase your company culture, and find the perfect match for your team.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Display selected filename in the custom file input
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.querySelector('input[type="file"]');
+            const fileLabel = document.querySelector('.custom-file-upload span');
+            
+            fileInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    fileLabel.textContent = this.files[0].name;
+                } else {
+                    fileLabel.textContent = 'Choose a file';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

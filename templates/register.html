@@ -1,0 +1,325 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: ProductSans;
+        }
+        @font-face {
+            font-family: ProductSans;
+            src: url(../static/fonts/ProductSansRegular.ttf);
+        }
+
+        body {
+            background-color: rgb(85, 56, 56);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 5px;
+        }
+
+        .registration-container {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .right-section {
+            background: linear-gradient(135deg, cadetblue 0%, cadetblue 100%);
+            padding: 50px;
+            color: white;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .company-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 80px;
+        }
+
+        .welcome-text {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .welcome-description {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .left-section {
+            padding: 40px;
+            width: 60%;
+            background: white;
+        }
+
+        .register-header {
+            margin-bottom: 30px;
+        }
+
+        .register-header h2 {
+            font-size: 32px;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        .register-header p {
+            color: black;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: black;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3a7bd5;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .signup-button {
+            width: 100%;
+            padding: 12px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .signup-button:hover {
+            background: darkgreen;
+        }
+
+        .bottom-links {
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .bottom-links a {
+            color: #3a7bd5;
+            text-decoration: none;
+        }
+
+        .bottom-links span {
+            color: black;
+        }
+
+        /* For displaying Django error messages */
+        .alert {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+
+        .alert-error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+
+        .errorlist {
+            color: #721c24;
+            font-size: 12px;
+            list-style: none;
+            margin-top: 4px;
+            padding-left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .registration-container {
+                flex-direction: column;
+            }
+            .left-section, .right-section {
+                width: 100%;
+            }
+            .right-section {
+                padding: 30px;
+                order: -1; /* Makes the description section appear first on mobile */
+            }
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        #company-logo_anchor{
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container">
+        <div class="left-section">
+            <div class="register-header">
+                <h2>Sign Up</h2>
+                <p>Please fill in the details below to create your account.</p>
+            </div>
+            
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">Username</label>
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.username.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                        {{ form.first_name }}
+                        {% if form.first_name.errors %}
+                            <ul class="errorlist">
+                                {% for error in form.first_name.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                        {{ form.last_name }}
+                        {% if form.last_name.errors %}
+                            <ul class="errorlist">
+                                {% for error in form.last_name.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">Email</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <ul class="errorlist">
+                                {% for error in form.email.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.mobile_number.id_for_label }}">Mobile Number</label>
+                        {{ form.mobile_number }}
+                        {% if form.mobile_number.errors %}
+                            <ul class="errorlist">
+                                {% for error in form.mobile_number.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.password1.id_for_label }}">Password</label>
+                    {{ form.password1 }}
+                    {% if form.password1.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.password1.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+                    {{ form.password2 }}
+                    {% if form.password2.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.password2.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                
+                <button type="submit" class="signup-button">SIGN UP</button>
+                
+                <div class="bottom-links">
+                    <span>Already have an account? </span>
+                    <a href="{% url 'app1:login' %}">Login</a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="right-section">
+            <a href="{% url 'app1:landingPage' %}" id="company-logo_anchor"><div class="company-logo">HireSync</div></a>
+            <h1 class="welcome-text">Join Us Today</h1>
+            <p class="welcome-description">Create an account to explore job opportunities, connect with top employers, and take the next step in your career.</p>
+        </div>
+    </div>
+</body>
+</html>

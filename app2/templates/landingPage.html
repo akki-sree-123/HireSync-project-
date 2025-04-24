@@ -1,0 +1,479 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HireSync - Your Career Partner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: ProductSans;
+        }
+        @font-face {
+            font-family: ProductSans;
+            src: url(../static/fonts/ProductSansRegular.ttf);
+        }
+
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: cadetblue;
+            text-decoration: none;
+            margin-right: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: cadetblue;
+        }
+
+        /* Dropdown styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            border-radius: 6px;
+            padding: 10px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f9f9f9;
+            color: cadetblue;
+        }
+
+        .nav-right {
+            display: flex;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-outline {
+            border: 1px solid cadetblue;
+            color: cadetblue;
+            background: transparent;
+            margin-right: 10px;
+        }
+
+        .btn-outline:hover {
+            background: cadetblue;
+            color: white;
+        }
+
+        .btn-filled {
+            background: cadetblue;
+            color: white;
+            border: 1px solid cadetblue;
+        }
+
+        .btn-filled:hover {
+            background: #4f9191;
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../static/images/Space.png);
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .search-box {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .search-input:focus {
+            outline: none;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            padding: 60px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .featured-jobs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 60px 10% 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 20px 5%;
+            }
+
+            .nav-left {
+                margin-bottom: 20px;
+            }
+
+            .logo {
+                margin-right: 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                padding: 0 0 0 20px;
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .hero {
+                padding: 80px 20px;
+            }
+        }
+
+        #job_categories_container{
+            width: 80vw;
+        }
+        .jobs_containers{
+            width: 100%;
+            border-radius: 5vw;
+            margin-bottom: 5vh;
+            transition: transform 250ms;
+        }
+        .jobs_containers:hover{
+            transform: scale(0.97);
+            box-shadow: 0vw 0vw 2vw cadetblue;
+        }
+        #domain_jobs_container{
+            border: 1px solid cadetblue;
+        }
+        #remote_jobs_container{
+            border: 1px solid cadetblue;
+        }
+        #walk-in_jobs_container{
+            border: 1px solid cadetblue;
+        }
+        .job_headings{
+            font-size: 5vh;
+            padding-top: 5vh;
+            padding-left: 3vw;
+        }
+        .jobs_paragraphs{
+            text-align: justify;
+            padding: 2vw 3vw;
+
+        }
+        .visit_buttons{
+            color: white;
+            font-size: 2.5vh;
+            border: none;
+            outline: none;
+            border-radius: 4vh;
+            background-color: cadetblue;
+            padding: 2vh 3vw;
+            position: relative;
+            left: 67.5vw;
+            bottom: 2.5vh;
+            cursor: pointer;
+        }
+        .visit_buttons:hover{
+            background-color: rgb(29, 97, 99);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="{% url 'app1:landingPage' %}" class="logo">HireSync</a>
+            <ul class="nav-links">
+                <li><a href="{% url 'app1:about' %}">About</a></li>
+                <li class="dropdown">
+                    <a href="#">Jobs</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'app2:job_list' %}">Domain Jobs</a>
+                        <a href="{% url 'app2:remote_job_list' %}">Remote Jobs</a>
+                        <a href="{% url 'app2:walkIn_job_list' %}">Walk-In Jobs</a>
+                    </div>
+                </li>
+                <li><a href="{% url 'app1:create_your_own_resume' %}">Create Your Own Resume</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'app1:login' %}" class="btn btn-outline">Login</a>
+            <a href="{% url 'app1:register' %}" class="btn btn-filled">Register</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Find Your Dream Job Today</h1>
+        <p>HireSync is an advanced job portal designed to bridge the gap between employers and job seekers. With an intuitive application process and a comprehensive database of opportunities across industries, HireSync ensures a streamlined hiring experience. Whether you're a recruiter searching for the perfect candidate or a professional seeking your dream job, HireSync makes job hunting easier and more efficient.</p>
+    </section>
+
+    <!-- Featured Jobs Section -->
+    <section class="main-content">
+        <h2 class="section-title">Featured Jobs</h2>
+        <div id="job_categories_container">
+            <div id="domain_jobs_container" class="jobs_containers">
+                <h1 class="job_headings">Domain Jobs</h1>
+                <p class="jobs_paragraphs">Are you looking for a role that aligns with your academic background or industry experience?
+                    Domain Jobs are categorized based on specific professional fields such as:
+                    
+                    Information Technology
+                    
+                    Healthcare
+                    
+                    Finance & Accounting
+                    
+                    Engineering
+                    
+                    Sales & Marketing
+                    
+                    Education, and more.
+                    
+                    These roles are ideal for individuals who want to grow in their specific domain, advance their careers, and leverage their technical or industry-specific expertise. Whether you're a fresh graduate aiming to start strong, or an experienced professional looking to level up, Domain Jobs will connect you with the most relevant openings in your field.
+                </p>
+                <a href="{% url 'app2:job_list' %}"><button class="visit_buttons">Visit</button></a>
+            
+            </div>
+            <div id="remote_jobs_container" class="jobs_containers">
+                <h1 class="job_headings">Remote Jobs</h1>
+                <p class="jobs_paragraphs">Embrace flexibility and freedom with Remote Jobs, perfect for today's digital professionals. These roles allow you to work from the comfort of your home or any location of your choice, eliminating the need for commuting and offering a better work-life balance.
+
+                    Ideal for freelancers, digital nomads, or those seeking work-from-home flexibility.
+                    
+                    Connect with companies across cities, states, or even countries.
+                    
+                    Access roles in tech, content creation, customer support, project management, and more.
+                    
+                    Remote Jobs empower you to maintain productivity while balancing personal and professional goals.
+                </p>
+                <a href="{% url 'app2:remote_job_list' %}"><button class="visit_buttons">Visit</button></a>
+    
+            </div>
+            <div id="walk-in_jobs_container" class="jobs_containers">
+                <h1 class="job_headings">Walk-In Jobs</h1>
+                <p class="jobs_paragraphs">If you prefer face-to-face interaction and are ready for on-the-spot interviews, our Walk-In Jobs category is for you. These listings are perfect for job seekers who want a faster hiring process and direct communication with employers.
+
+                    View company details, interview schedules, and venue information all in one place.
+                    
+                    Often used by startups, retail companies, BPOs, and service sectors for bulk or urgent hiring.
+                    
+                    Great for freshers, part-time job seekers, or anyone looking for quick placement.
+                    
+                    Just walk in with your resume, showcase your skills, and walk out with a potential job offer!
+                </p>
+                <a href="{% url 'app2:walkIn_job_list' %}"><button class="visit_buttons">Visit</button></a>
+    
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>For Job Seekers</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Career Advice</a></li>
+                    <li><a href="#">Browse Jobs</a></li>
+                    <li><a href="#">Create Your Own Resume</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>For Employers</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Post a Job</a></li>
+                    <li><a href="#">Find Candidates</a></li>
+                    <li><a href="#">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Browse Companies</a></li>
+                    <li><a href="#">Salaries</a></li>
+                    <li><a href="#">Job Market Trends</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>HireSync</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Work at HireSync</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; {% now "Y" %} HireSync. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

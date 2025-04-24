@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overleaf - Professional Resume Creation with LaTeX</title>
+    <style>
+        :root {
+            --dark-teal: #0D4949;
+            --lime-green: #A4C24F;
+            --orange: #DB611D;
+            --yellow: #FBC948;
+            --off-white: #F6F6E3;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--dark-teal);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--yellow);
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--orange);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #c15519;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .section:nth-child(odd) {
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--dark-teal);
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .feature {
+            flex-basis: 30%;
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .feature-title {
+            color: var(--dark-teal);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-icon {
+            background-color: var(--lime-green);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .latex-info {
+            background-color: var(--off-white);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        .resume-templates {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .template-card {
+            flex-basis: 23%;
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .template-img {
+            height: 200px;
+            background-color: var(--dark-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .template-info {
+            padding: 15px;
+        }
+
+        .template-name {
+            color: var(--dark-teal);
+            margin-bottom: 5px;
+        }
+
+        .template-tag {
+            display: inline-block;
+            background-color: var(--lime-green);
+            color: white;
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        .testimonials {
+            background-color: var(--dark-teal);
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .testimonial-title {
+            color: var(--yellow);
+            margin-bottom: 40px;
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-author {
+            color: var(--lime-green);
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer-button {
+            background-color: var(--orange);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Craft Professional Resumes with Overleaf</h1>
+            <p class="subtitle">Leverage the Power of LaTeX for Stunning, Professional Documents</p>
+            <a href="https://www.overleaf.com" class="cta-button">Get Started with Overleaf</a>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Why Create Your Resume with Overleaf?</h2>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <h3 class="feature-title">Professional Formatting</h3>
+                    <p>Achieve pixel-perfect typesetting with LaTeX's sophisticated algorithms that properly handle spacing, hyphenation, and justification to create polished, publication-quality documents.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <h3 class="feature-title">Template Library</h3>
+                    <p>Access hundreds of professionally designed resume templates that adhere to industry standards and best practices, eliminating the need to start from scratch.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <h3 class="feature-title">Version Control</h3>
+                    <p>Track changes, revert to previous versions, and maintain multiple resume variations for different job applications with comprehensive version history.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <h3 class="feature-title">Collaborative Editing</h3>
+                    <p>Share your resume with mentors or colleagues for feedback and collaborate in real-time with synchronized editing capabilities.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <h3 class="feature-title">Consistent Styling</h3>
+                    <p>Define styles once and apply them throughout your document for a coherent, professional look that remains consistent across all sections.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">✓</div>
+                    <h3 class="feature-title">PDF Export</h3>
+                    <p>Generate high-quality, recruiter-friendly PDF documents that maintain perfect formatting across all devices and platforms.</p>
+                </div>
+            </div>
+            
+            <div class="latex-info">
+                <h3 style="color: var(--dark-teal);">What is LaTeX?</h3>
+                <p>LaTeX is a high-quality typesetting system designed for the production of technical and scientific documentation. Unlike conventional word processors, LaTeX uses markup tags to define the structure and styling of your document, allowing you to focus on content rather than formatting.</p>
+                <p>LaTeX excels at:</p>
+                <ul>
+                    <li>Mathematical equations and scientific notation</li>
+                    <li>Precise control over document layout and spacing</li>
+                    <li>Automated cross-references, citations, and bibliographies</li>
+                    <li>Consistent styling across large documents</li>
+                    <li>Creating publication-ready professional documents</li>
+                </ul>
+                <p>Overleaf provides a user-friendly web interface to LaTeX, making it accessible even to those with no prior LaTeX experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Resume Templates</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Overleaf offers a wide range of professionally designed templates to kickstart your resume creation. Select from various styles tailored for different industries and career levels.</p>
+            
+            <div class="resume-templates">
+                <div class="template-card">
+                    <div class="template-img">Modern</div>
+                    <div class="template-info">
+                        <h4 class="template-name">Modern</h4>
+                        <span class="template-tag">Popular</span>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-img">Academic CV</div>
+                    <div class="template-info">
+                        <h4 class="template-name">Academic CV</h4>
+                        <span class="template-tag">Research</span>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-img">Minimalist</div>
+                    <div class="template-info">
+                        <h4 class="template-name">Minimalist</h4>
+                        <span class="template-tag">Creative</span>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-img">Executive</div>
+                    <div class="template-info">
+                        <h4 class="template-name">Executive</h4>
+                        <span class="template-tag">Leadership</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="testimonial-title">What Enthusiasts Say</h2>
+            <p class="testimonial-quote">"Using Overleaf to create my resume gave me a significant edge in the job market. The professional formatting and clean design helped my application stand out from the crowd, and I received multiple compliments from recruiters about my document's appearance."</p>
+            <p class="testimonial-author">- Technical Professional</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Overleaf Advantages for Resume Creation</h2>
+            
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                <div style="flex-basis: 48%;">
+                    <h3 style="color: var(--dark-teal);">Technical Advantages</h3>
+                    <ul>
+                        <li><strong>Separation of Content and Style:</strong> Focus on your qualifications while LaTeX handles the formatting</li>
+                        <li><strong>Mathematical Typesetting:</strong> Perfect for technical resumes that require equations or formulas</li>
+                        <li><strong>Cross-Platform Compatibility:</strong> Your resume looks identical on all devices and operating systems</li>
+                        <li><strong>Stability:</strong> No unexpected formatting changes or crashes when editing large documents</li>
+                        <li><strong>Scalability:</strong> Easily expand from a resume to a full CV without reformatting</li>
+                    </ul>
+                </div>
+                
+                <div style="flex-basis: 48%;">
+                    <h3 style="color: var(--dark-teal);">Professional Advantages</h3>
+                    <ul>
+                        <li><strong>Standout Appearance:</strong> Distinguished, professional formatting that impresses recruiters</li>
+                        <li><strong>ATS Optimization:</strong> Clean, properly structured documents that parse well in Applicant Tracking Systems</li>
+                        <li><strong>Industry Standards:</strong> Templates designed to match expectations in various professional fields</li>
+                        <li><strong>Consistency:</strong> Maintain the same professional branding across all application materials</li>
+                        <li><strong>Global Recognition:</strong> LaTeX is the standard in academia and many technical industries</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Ready to create a proficient resume that stands out?</p>
+            <a href="https://www.overleaf.com" class="footer-button">Visit Overleaf Now</a>
+            <p style="margin-top: 30px; font-size: 0.9rem;">© 2025 Overleaf Information Page</p>
+        </div>
+    </footer>
+</body>
+</html>

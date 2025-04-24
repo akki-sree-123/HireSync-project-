@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Job Details | HireSync</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #E9E9E9;
+            color: #0F2C25;
+            line-height: 1.6;
+        }
+        
+        .page-header {
+            background-color: #0F2C25;
+            padding: 20px 30px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .page-header .logo {
+            text-decoration: none;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .header-links a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background-color: #A6AB9F;
+            color: #0F2C25;
+        }
+        
+        .header-links a:hover {
+            background-color: #E9E9E9;
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .job-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(15, 44, 37, 0.1);
+            border-left: 5px solid #5A706C;
+        }
+        
+        .company-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 30px;
+            box-shadow: 0 2px 8px rgba(15, 44, 37, 0.1);
+            border: 2px solid #E9E9E9;
+        }
+        
+        .company-info h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #0F2C25;
+        }
+        
+        .company-info p {
+            display: flex;
+            align-items: center;
+            color: #5A706C;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        
+        .company-info p svg {
+            margin-right: 8px;
+        }
+        
+        .company-link {
+            color: #D23939;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .company-link:hover {
+            color: #b32e2e;
+            text-decoration: underline;
+        }
+        
+        .company-link svg {
+            margin-left: 5px;
+        }
+        
+        .job-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .job-description {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(15, 44, 37, 0.05);
+        }
+        
+        .job-description h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #0F2C25;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #A6AB9F;
+        }
+        
+        .job-description p {
+            margin-bottom: 20px;
+            color: #5A706C;
+        }
+        
+        .job-description ul {
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+        
+        .job-description li {
+            margin-bottom: 10px;
+            color: #5A706C;
+            position: relative;
+            padding-left: 5px;
+        }
+        
+        .job-description li::marker {
+            color: #D23939;
+        }
+        
+        .job-description h3 {
+            font-size: 18px;
+            margin: 30px 0 15px;
+            color: #0F2C25;
+            border-left: 3px solid #D23939;
+            padding-left: 10px;
+        }
+        
+        .job-sidebar {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(15, 44, 37, 0.05);
+            align-self: start;
+            border-top: 5px solid #D23939;
+        }
+        
+        .job-sidebar h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #0F2C25;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #A6AB9F;
+        }
+        
+        .job-detail {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #E9E9E9;
+        }
+        
+        .job-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .job-detail strong {
+            min-width: 120px;
+            color: #5A706C;
+            font-weight: 600;
+        }
+        
+        .job-detail span {
+            color: #0F2C25;
+        }
+        
+        .apply-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background-color: #D23939;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(210, 57, 57, 0.2);
+        }
+        
+        .apply-btn:hover {
+            background-color: #b32e2e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(210, 57, 57, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .job-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .company-logo {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .job-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-links a {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <a href="{% url 'app1:home' %}" class="logo"><h1>HireSync</h1></a>
+        <div class="header-links">
+            <a href="{% url 'app2:job_list' %}">Back to Domain Jobs</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="job-header">
+            <img src="{{ job.companyImage.url }}" alt="{{ job.company }} Logo" class="company-logo">
+            <div class="company-info">
+                <h1>{{ job.title }}</h1>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                    {{ job.company }}
+                </p>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    {{ job.location }}
+                </p>
+                <a href="https://www.{{ job.company }}.com/in-en" class="company-link" target="_blank">
+                    Visit Company Website
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="job-content">
+            <div class="job-description">
+                <h2>Job Description</h2>
+                <p>{{ job.description }}</p>
+                
+                <h3>Responsibilities</h3>
+                <ul>
+                    {% for responsibility in job.responsibilities_list %}
+                    <li>{{ responsibility }}</li>
+                    {% empty %}
+                    <li>Design and implement solutions according to business requirements</li>
+                    <li>Collaborate with cross-functional teams to deliver high-quality results</li>
+                    <li>Participate in code reviews and maintain coding standards</li>
+                    <li>Troubleshoot and resolve technical issues efficiently</li>
+                    <li>Stay updated with industry trends and best practices</li>
+                    {% endfor %}
+                </ul>
+                
+                <h3>Requirements</h3>
+                <ul>
+                    {% for requirement in job.requirements_list %}
+                    <li>{{ requirement }}</li>
+                    {% empty %}
+                    <li>Bachelor's degree in Computer Science, Engineering, or related field</li>
+                    <li>3+ years of experience in relevant technologies</li>
+                    <li>Strong problem-solving and analytical skills</li>
+                    <li>Excellent communication and teamwork abilities</li>
+                    <li>Adaptability and willingness to learn new technologies</li>
+                    {% endfor %}
+                </ul>
+                
+                <h3>Benefits</h3>
+                <ul>
+                    {% for benefit in job.benefits_list %}
+                    <li>{{ benefit }}</li>
+                    {% empty %}
+                    <li>Competitive salary and performance bonuses</li>
+                    <li>Comprehensive health insurance</li>
+                    <li>Flexible work arrangements</li>
+                    <li>Professional development opportunities</li>
+                    <li>Collaborative and inclusive work environment</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="job-sidebar">
+                <h3>Job Overview</h3>
+                <div class="job-detail">
+                    <strong>Job Type:</strong>
+                    <span>{{ job.job_type }}</span>
+                </div>
+                <div class="job-detail">
+                    <strong>Experience:</strong>
+                    <span>{{ job.experience|default:"3+ years" }}</span>
+                </div>
+                <div class="job-detail">
+                    <strong>Education:</strong>
+                    <span>{{ job.education|default:"Bachelor's Degree" }}</span>
+                </div>
+                <div class="job-detail">
+                    <strong>Salary:</strong>
+                    <span>{{ job.salary|default:"Based on experience" }}</span>
+                </div>
+                <div class="job-detail">
+                    <strong>Posted On:</strong>
+                    <span>{{ job.posted_on|date:"F j, Y" }}</span>
+                </div>
+                
+                <a href="{% url 'app2:job_application' job.id %}" class="apply-btn">Apply Now</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Remote Jobs</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Applications | HireSync</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #ECDDD5;
+            color: #2C0715;
+            line-height: 1.6;
+        }
+        
+        .page-header {
+            background-color: #2C0715;
+            padding: 20px 30px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(44, 7, 21, 0.2);
+        }
+        
+        .page-header .logo {
+            text-decoration: none;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .header-links a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background-color: #C0949F;
+            color: #2C0715;
+            margin-left: 10px;
+        }
+        
+        .header-links a:hover {
+            background-color: #ECDDD5;
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .page-title {
+            margin-bottom: 25px;
+            color: #7F163D;
+            font-size: 32px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .page-subtitle {
+            font-size: 18px;
+            color: #B95929;
+            margin-bottom: 30px;
+        }
+        
+        .applications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 25px;
+        }
+        
+        .application-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(44, 7, 21, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .application-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(44, 7, 21, 0.15);
+        }
+        
+        .application-header {
+            padding: 20px;
+            background-color: #7F163D;
+            color: white;
+            position: relative;
+        }
+        
+        .application-header h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            padding-right: 80px;
+        }
+        
+        .application-company {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .application-status {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .status-applied {
+            background-color: #C0949F;
+            color: #2C0715;
+        }
+        
+        .status-review {
+            background-color: #ECDDD5;
+            color: #2C0715;
+        }
+        
+        .status-interview {
+            background-color: #B95929;
+            color: white;
+        }
+        
+        .status-rejected {
+            background-color: #2C0715;
+            color: white;
+        }
+        
+        .status-offered {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .status-accepted {
+            background-color: #2E7D32;
+            color: white;
+        }
+        
+        .application-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .application-info {
+            margin-bottom: 20px;
+        }
+        
+        .info-row {
+            display: flex;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        
+        .info-label {
+            width: 120px;
+            font-weight: 600;
+            color: #7F163D;
+        }
+        
+        .info-value {
+            flex: 1;
+        }
+        
+        .application-date {
+            margin-top: auto;
+            font-size: 14px;
+            color: #7F163D;
+            font-style: italic;
+        }
+        
+        .application-footer {
+            background-color: #f9f4f1;
+            padding: 15px 20px;
+            border-top: 1px solid #efe5e0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: #B95929;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #9E4720;
+        }
+        
+        .btn-secondary {
+            background-color: #C0949F;
+            color: #2C0715;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #b0848f;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(44, 7, 21, 0.1);
+        }
+        
+        .empty-state svg {
+            margin-bottom: 20px;
+            color: #C0949F;
+        }
+        
+        .empty-state h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #7F163D;
+        }
+        
+        .empty-state p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #2C0715;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .applications-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <a href="{% url 'app1:home' %}" class="logo"><h1>HireSync</h1></a>
+        <div class="header-links">
+            <a href="{% url 'app2:remote_job_list' %}">Browse Jobs</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="page-title">
+            <h2>My Applications</h2>
+            <div class="header-links">
+                <a href="{% url 'app2:remote_job_list' %}" class="btn btn-secondary">Find New Jobs</a>
+            </div>
+        </div>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <p class="page-subtitle">Track the status of all your job applications</p>
+        
+        {% if applications %}
+            <div class="applications-container">
+                {% for application in applications %}
+                    <div class="application-card">
+                        <div class="application-header">
+                            <h3>{{ application.job.title }}</h3>
+                            <div class="application-company">{{ application.job.company }}</div>
+                            <span class="application-status status-{{ application.status|lower }}">{{ application.status }}</span>
+                        </div>
+                        
+                        <div class="application-body">
+                            <div class="application-info">
+                                <div class="info-row">
+                                    <div class="info-label">Location:</div>
+                                    <div class="info-value">{{ application.job.location }}</div>
+                                </div>
+                                
+                                <div class="info-row">
+                                    <div class="info-label">Job Type:</div>
+                                    <div class="info-value">{{ application.job.job_type }}</div>
+                                </div>
+                                
+                                <div class="info-row">
+                                    <div class="info-label">Notice Period:</div>
+                                    <div class="info-value">{{ application.notice_period }}</div>
+                                </div>
+                                
+                                <div class="info-row">
+                                    <div class="info-label">Relocate:</div>
+                                    <div class="info-value">{{ application.relocate }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="application-date">
+                                Applied on: {{ application.applied_date|date:"F j, Y" }}
+                            </div>
+                        </div>
+                        
+                        <div class="application-footer">
+                            <a href="{% url 'app2:remote_job_detail' application.job.id %}" class="btn btn-secondary">View Job</a>
+                            {% if application.resume %}
+                                <a href="{{ application.resume.url }}" class="btn btn-primary" target="_blank">View Resume</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    <path d="M12 11h4"></path>
+                    <path d="M12 15h4"></path>
+                    <path d="M8 11h.01"></path>
+                    <path d="M8 15h.01"></path>
+                </svg>
+                <h3>No Applications Yet</h3>
+                <p>You haven't applied for any jobs yet. Start exploring available positions and submit your first application.</p>
+                <a href="{% url 'app2:remote_job_list' %}" class="btn btn-primary">Browse Jobs</a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Walk-In Job Listings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #5d4b46;
+            padding: 40px;
+            min-height: 100vh;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background-color: #7ca3a5;
+            padding: 20px 30px;
+            border-radius: 10px;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: 32px;
+            font-weight: 600;
+        }
+        
+        .header-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #4169E1;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: #5d4b46;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .job-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        
+        /* Fix: Make anchor tags respect the grid layout */
+        .job-container > a {
+            display: contents;
+        }
+        
+        .job-card {
+            position: relative;
+            height: 300px;
+            padding: 25px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .job-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            border-bottom: 4px solid #7ca3a5;
+        }
+        
+        .company-image {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .job-card h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-right: 70px; /* Make room for logo */
+        }
+        
+        .job-info {
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        .job-info strong {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .job-description {
+            margin-top: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            color: #666;
+            line-height: 1.75;
+        }
+        
+        #job_company_anchor {
+            color: #666;
+            text-decoration: none;
+            position: relative;
+            z-index: 2;
+        }
+        
+        #job_company_anchor:hover {
+            color: #4169E1;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 1024px) {
+            .job-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .job-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>Walk-In Jobs</h1>
+        <div class="header-links">
+            {% if user.is_staff %}
+                <a href="{% url 'app2:add_walkin_job' %}" class="btn btn-primary">Add Job</a>
+            {% endif %}
+            <a href="{% url 'app1:home' %}" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+    
+    <div class="job-container">
+        {% for job in jobs %}
+        <a href="{% url 'app2:walkIn_job_detail' job.id %}" style="text-decoration: none;">
+            <div class="job-card">
+                {% if job.companyImage %}
+                    <img src="{{ job.companyImage.url }}" alt="Company Logo" class="company-image">
+                {% endif %}
+                <h3>{{ job.title }}</h3>
+                <p class="job-info"><strong>Company:</strong> <a href="https://www.{{ job.company }}.com/in-en" id="job_company_anchor" onclick="event.stopPropagation()">{{ job.company }}</a></p>
+                <p class="job-info"><strong>Location:</strong> {{ job.location }}</p>
+                <div class="job-description">
+                    <strong>Description:</strong> {{ job.description }}
+                </div>
+            </div>
+        </a>        
+        {% endfor %}
+    </div>
+</body>
+</html>

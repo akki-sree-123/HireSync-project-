@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About HireSync</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --cadet-blue: #5A706C;
+            --sage-green: #A6AB9F;
+            --accent-red: #D23939;
+            --light-gray: #E9E9E9;
+            --dark-text: #333333;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--cadet-blue);
+            color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--accent-red);
+        }
+        
+        .hero {
+            background: linear-gradient(to right, var(--cadet-blue), var(--sage-green));
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            position: relative;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--cadet-blue);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-red);
+        }
+        
+        .mission-box {
+            background-color: var(--cadet-blue);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 60px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mission-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--cadet-blue);
+        }
+        
+        .why-choose {
+            background-color: var(--sage-green);
+            padding: 80px 0;
+            color: var(--white);
+        }
+        
+        .why-choose-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .why-choose-item {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
+        }
+        
+        .why-choose-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .why-choose-item i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .job-categories {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .category-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .category-item {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--accent-red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .category-item:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .category-item h3 {
+            color: var(--cadet-blue);
+            margin-bottom: 15px;
+        }
+        
+        .join-network {
+            background: linear-gradient(rgba(90, 112, 108, 0.9), rgba(90, 112, 108, 0.9)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .join-network h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--accent-red);
+            color: var(--white);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            background-color: #b82f2f;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+        footer {
+            background-color: var(--cadet-blue);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-red);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content, .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mission-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo animate__animated animate__fadeIn">HireSync</div>
+            <nav class="animate__animated animate__fadeIn animate__delay-1s">
+                <a href="{% url 'app1:home' %}" class="cta-button">Get Started</a>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">About HireSync</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">An innovative job portal platform bridging the gap between job seekers and employers</p>
+        </div>
+    </section>
+    
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title animate__animated animate__fadeInUp">Who We Are</h2>
+            
+            <div class="mission-box animate__animated animate__fadeIn animate__delay-1s">
+                <h3>Our Mission</h3>
+                <p>At HireSync, our mission is to simplify the hiring process through technology, offering a centralized platform that enables fast, efficient, and intelligent job matching. We are committed to empowering individuals and organizations by creating meaningful employment connections.</p>
+            </div>
+            
+            <h2 class="section-title animate__animated animate__fadeInUp">Key Features</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-layer-group feature-icon"></i>
+                    <h3>Diverse Job Categories</h3>
+                    <p>HireSync supports three main types of job listings to ensure comprehensive coverage of opportunities across various industries and work arrangements.</p>
+                </div>
+                
+                <div class="feature-card animate__animated animate__fadeInUp animate__delay-1s">
+                    <i class="fas fa-edit feature-icon"></i>
+                    <h3>Effortless Job Posting</h3>
+                    <p>Employers can quickly post jobs using an intuitive two-column form interface, complete with fields for job title, salary, type, company details, and contact information.</p>
+                </div>
+                
+                <div class="feature-card animate__animated animate__fadeInUp animate__delay-2s">
+                    <i class="fas fa-users feature-icon"></i>
+                    <h3>Smart Candidate Management</h3>
+                    <p>Recruiters can manage job listings and track applicant interest with ease, while job seekers can explore tailored listings based on their interests.</p>
+                </div>
+                
+                <div class="feature-card animate__animated animate__fadeInUp animate__delay-3s">
+                    <i class="fas fa-code feature-icon"></i>
+                    <h3>Built with Django</h3>
+                    <p>HireSync is developed using the Django framework, leveraging its robust capabilities for secure, scalable, and maintainable web applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="job-categories">
+        <div class="container">
+            <h2 class="section-title animate__animated animate__fadeInUp">Job Categories</h2>
+            
+            <div class="category-list">
+                <div class="category-item animate__animated animate__fadeInLeft">
+                    <h3>Domain Jobs</h3>
+                    <p>Profession-specific opportunities across industries that match your expertise and career goals.</p>
+                </div>
+                
+                <div class="category-item animate__animated animate__fadeInUp">
+                    <h3>Remote Jobs</h3>
+                    <p>Work-from-anywhere roles to support modern work flexibility and global talent acquisition.</p>
+                </div>
+                
+                <div class="category-item animate__animated animate__fadeInRight">
+                    <h3>Walk-In Jobs</h3>
+                    <p>Immediate hiring opportunities with walk-in interview details for faster employment solutions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="why-choose">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--white);">Why Choose HireSync?</h2>
+            
+            <div class="why-choose-content">
+                <div class="why-choose-item animate__animated animate__fadeInUp">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>User-Centric Design</h3>
+                    <p>A clean and responsive UI ensures a seamless experience across devices, making job searching and recruiting intuitive.</p>
+                </div>
+                
+                <div class="why-choose-item animate__animated animate__fadeInUp animate__delay-1s">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Speed & Simplicity</h3>
+                    <p>Streamlined workflows minimize effort and maximize efficiency for both job seekers and recruiters.</p>
+                </div>
+                
+                <div class="why-choose-item animate__animated animate__fadeInUp animate__delay-2s">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure & Reliable</h3>
+                    <p>Built with modern web technologies and best practices to ensure data integrity and reliability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="join-network">
+        <div class="container">
+            <h2 class="animate__animated animate__fadeInUp">Join the Network</h2>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">HireSync is more than just a job board — it's a platform that connects ambition with opportunity. Whether you're hiring or job hunting, HireSync is your trusted partner in shaping professional futures.</p>
+            <a href="{% url 'app1:home' %}" class="cta-button animate__animated animate__pulse animate__infinite">Get Started Today</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">HireSync</div>
+                <div class="footer-links">
+                    <a href="{% url 'app1:home' %}">Home</a>
+                    <a href="#">Jobs</a>
+                    <a href="#">For Employers</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 HireSync. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // Reveal animations when scrolling
+        $(window).scroll(function() {
+            $('.animate__animated:not(.animate__animated--triggered)').each(function() {
+                var elementTop = $(this).offset().top;
+                var elementVisible = 150;
+                
+                if (elementTop < ($(window).scrollTop() + $(window).height() - elementVisible)) {
+                    $(this).addClass('animate__animated--triggered');
+                }
+            });
+        });
+        
+        // Initialize on page load
+        $(document).ready(function() {
+            setTimeout(function() {
+                $(window).trigger('scroll');
+            }, 100);
+        });
+    </script>
+</body>
+</html>
